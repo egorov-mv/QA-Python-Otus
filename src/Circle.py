@@ -3,6 +3,7 @@ from Figure import Figure
 
 class Circle(Figure):
     def __init__(self, radius):
+        super().__init__(name='Circle')
         if radius <= 0:
             raise ValueError('Радиус не может быть меньше 0')
         self.pi = 3.14
