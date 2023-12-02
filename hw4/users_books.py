@@ -6,7 +6,8 @@ USERS_FILE_NAME = 'users.json'
 BOOKS_FILE_NAME = 'books.csv'
 RESULT_FILE_NAME = 'result.json'
 
-def get_path (path_ending):
+
+def get_path(path_ending):
     base_path = os.getcwd()
     full_path = os.path.join(base_path, path_ending)
     return full_path
