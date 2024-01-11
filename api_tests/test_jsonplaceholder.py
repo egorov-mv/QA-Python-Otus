@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from api_tests.conftest import get_random_user_id
+from api_tests.conftest import get_random_user_id_from_json
 from api_tests.conftest import Const
 
 
@@ -16,9 +16,15 @@ def test_create():
     assert r.json() == data
 
 
-@pytest.mark.parametrize('user_id', get_random_user_id(2))
+@pytest.mark.parametrize('user_id', get_random_user_id_from_json(2))
 def test_get_post(user_id):
     r = requests.get(Const.BASE_URL_JSON + Const.POSTS + '?userId=' + str(user_id))
+    assert r.json()[0]['userId'] == user_id
+
+
+@pytest.mark.parametrize('user_id', get_random_user_id_from_json(2))
+def test_get_todos(user_id):
+    r = requests.get(Const.BASE_URL_JSON + Const.USERS + '/' + str(user_id) + Const.TODOS)
     assert r.json()[0]['userId'] == user_id
 
 

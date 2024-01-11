@@ -16,6 +16,7 @@ class Const:
     STATUS_CODE_OK = 200
     SUCCESS = 'success'
     POSTS = '/posts'
+    TODOS = '/todos'
 
 
 def pytest_addoption(parser):
@@ -23,7 +24,7 @@ def pytest_addoption(parser):
     parser.addoption("--status_code", default=200)
 
 
-def get_random_user_id(count):
+def get_random_user_id_from_json(count):
     r = requests.get(Const.BASE_URL_JSON + Const.USERS)
     return random.sample([k['id'] for k in r.json()], count)
 
